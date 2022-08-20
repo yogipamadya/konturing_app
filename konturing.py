@@ -7,24 +7,23 @@ import plotly.graph_objects as go
 st.set_option('deprecation.showfileUploaderEncoding', False)
 
 #title
-st.title('Aplikasi Konturing Mandiri')
-st.write('Web App untuk Konturing')
+st.title('Contouring App')
 
 #sidebar
-st.sidebar.subheader("Pengaturan")
+st.sidebar.subheader("Settings")
 
 #uploadedfile
-uploaded_file = st.sidebar.file_uploader(label="Unggah CSV nya bos", type=['csv'])
+uploaded_file = st.sidebar.file_uploader(label="Upload CSV File | X | Y | Z ", type=['csv'])
 
 global df
 
 if uploaded_file is not None:
     print(uploaded_file)
-    print('Ke Uploaded Nih')
+    print('Uploaded')
     try:
         df = pd.read_csv(uploaded_file)
     except Exception as e:
-        print(st.write('Error Nih Bro'))
+        print(st.write('Error'))
 
 
 global numeric_columns
@@ -36,18 +35,18 @@ try:
     print(numeric_columns)
 except Exception as e:
     print(e)
-    st.write('## Please Upload File Nya Atulah')
+    st.write('# Please Upload The File')
 
 
 
 #select widget
 chart_select = st.sidebar.selectbox(
-    label="Mau Ngapain?",
-    options=['Konturing','Konturang']
+    label="What do you want to do?",
+    options=['Contouring','Nothing']
 )
 
-if chart_select == 'Konturing':
-    st.sidebar.subheader("Pilih Kolomnya")
+if chart_select == 'Contouring':
+    st.sidebar.subheader("Choose the column")
     try:
         x_values = st.sidebar.selectbox('X Axis', options=numeric_columns)
         y_values = st.sidebar.selectbox('Y Axis', options=numeric_columns)
@@ -61,5 +60,5 @@ if chart_select == 'Konturing':
     except Exception as e:
         print(e)
 
-if chart_select == 'Konturang':
-    st.write('## Kagak ada konturang!')
+if chart_select == 'Nothing':
+    st.write('## Really?')
