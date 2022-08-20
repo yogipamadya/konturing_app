@@ -55,7 +55,7 @@ if chart_select == 'Contouring':
         plot = go.Figure()
         plot.add_trace(go.Contour(x=df[x_values], y=df[y_values], z=df[z_values] ))
         plot.add_trace(go.Scatter(x=df[x_values], y=df[y_values], mode='markers', text=df[z_values]))
-        plot.update_layout(title='Peta Kontur', template='plotly_white')
+        plot.update_layout(title='Contour Map', template='plotly_white')
         st.plotly_chart(plot)
     except Exception as e:
         print(e)
